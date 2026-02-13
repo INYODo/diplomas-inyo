@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de Diplomas - Godai Terapias</title>
+    <style>
+        /* Configuración de Impresión */
+        @page { size: A4 landscape; margin: 0; }
+        @media print {
+            body { background: white !important; -webkit-print-color-adjust: exact; }
+            .no-print { display: none; }
+            .diploma-canvas { box-shadow: none !important; border: none !important; }
+        }
+
+        body { 
+            margin: 0; padding: 20px; 
+            font-family: 'Times New Roman', serif; 
+            background-color: #1a1a1a; 
+            display: flex; flex-direction: column; align-items: center; 
+            min-height: 100vh;
+        }
+
+        /* Contenedor del Diploma */
+        .diploma-canvas {
+            width: 297mm; height: 210mm;
+            background: white; position: relative;
+            box-sizing: border-box; padding: 50px;
+            box-shadow: 0 0 50px rgba(0,0,0,0.8);
+            overflow: hidden;
+        }
+
+        /* Marco Ornamental */
+        .border-frame {
+            border: 40px solid transparent;
+            /* Esta imagen simula el borde de tu captura */
+            border-image: url('https://www.transparentpng.com/download/border/floral-frame-border-free-png-N6YI7T.png') 10% round;
+            height: 100%; width: 100%; position: absolute; top: 0; left: 0; pointer-events: none;
+            box-sizing: border-box;
+        }
+
+        .content { text-align: center; position: relative; z-index: 1; }
+
+        h1 { color: #6e2a2a; font-size: 42pt; margin: 0; text-decoration: underline; }
+        .japanese { font-size: 26pt; margin: 10px 0; font-weight: bold; }
+        .subtitle { font-size: 16pt; font-weight: bold; margin-bottom: 20px; }
+        
+        .grant-text { font-style: italic; font-size: 18pt; margin: 10px 0; }
+        
+        /* Campo para escribir el nombre */
+        .editable-name {
+            font-size: 32pt; font-weight: bold; border-bottom: 2px dotted #666;
+            display: inline-block; min-width: 400px; outline: none; color: #000;
+            padding: 0 15px;
+        }
+
+        .details { font-style: italic; font-size: 16pt; line-height: 1.5; margin: 20px 60px; }
+        .bold-detail { font-weight: bold; font-style: normal; font-size: 17pt; }
+
+        .footer { display: flex; justify-content: space-around; margin-top: 50px; font-size: 12pt; }
+        .sig-box { width: 280px; text-align: center; }
+        .line { border-top: 1px solid #000; margin-bottom: 5px; }
+
+        /* Estilo del Botón */
+        .btn-print {
+            padding: 12px 25px; margin-bottom: 20px; 
+            background: #6e2a2a; color: white; border: none; 
+            border-radius: 5px; cursor: pointer; font-size: 16px;
+            font-weight: bold; transition: 0.3s;
+        }
+        .btn-print:hover { background: #8e3a3a; }
+    </style>
+</head>
+<body>
+
+    <div class="no-print">
+        <button class="btn-print" onclick="window.print()">
+            🖨️ IMPRIMIR / GENERAR PDF
+        </button>
+        <p style="color: #ccc; font-family: sans-serif; text-align: center;">
+            Haz clic en las líneas de puntos para editar el <b>Nombre</b>, <b>Fecha</b> u <b>Horas</b>.
+        </p>
+    </div>
+
+    <div class="diploma-canvas">
+        <div class="border-frame"></div>
+        
+        <div class="content">
+            <h1>DIPLOMA DE GRADUACION</h1>
+            <div class="japanese">浪越指圧 基本実技</div>
+            <div class="subtitle">Habilidades prácticas básicas de Shiatsu Namikoshi</div>
+
+            <p class="grant-text">Otorgado a <span class="editable-name" contenteditable="true">NOMBRE DEL GRADUADO</span></p>
+
+            <div class="details">
+                quien a cursado y aprobado<br>
+                <span class="bold-detail">Keiraku Taisō (経絡体操), Calistenia Junan Taisō (柔軟体操)<br>
+                Gimnasia básica (基本体操).</span><br>
+                Completando su formación en esta escuela durante el período <span contenteditable="true" style="border-bottom: 1px dotted #000;">FECHA INICIO - FIN</span><br>
+                registrando <span contenteditable="true" style="border-bottom: 1px dotted #000;">XX</span> horas cátedra teórico prácticas.<br>
+                Por lo cual queda acreditado como<br>
+                <span class="bold-detail">Instructor Facilitador Zen Stretching.</span>
+            </div>
+
+            <div class="footer">
+                <div class="sig-box">
+                    <div class="line"></div>
+                    <strong>Gastón Burgos</strong><br>
+                    Director Académico Godai Terapias
+                </div>
+                <div class="sig-box">
+                    <div class="line"></div>
+                    <span contenteditable="true">Buenos Aires, 2026</span><br>
+                    Lugar y Fecha
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
